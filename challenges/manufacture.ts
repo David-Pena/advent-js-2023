@@ -1,16 +1,11 @@
 function manufacture(gifts: string[], materials: string) {
-  // Check if there are no gifts or materials
-  if (gifts.length === 0 || !materials) return [];
-
+  const _materials: string[] = materials.split("");
   const results: string[] = [];
-  gifts.forEach((gift) => {
-    const item = gift.split("");
-    // Check if all letters from the gift are available in materials
-    const hasAllMaterials = item.every((el) => materials.indexOf(el) != -1);
 
-    // If above condition is true, push the gift to the results arr
-    if (hasAllMaterials) results.push(gift);
-  });
+  for (const gift of gifts) {
+    const word = gift.split("");
+    if (!word.some((item) => !_materials.includes(item))) results.push(gift);
+  }
 
   return results;
 }
